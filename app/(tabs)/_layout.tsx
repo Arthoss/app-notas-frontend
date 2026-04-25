@@ -1,33 +1,53 @@
+import { Ionicons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
-import React from 'react';
-
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-      }}>
+        tabBarActiveTintColor: '#1565C0',
+        tabBarInactiveTintColor: '#90A4AE',
+        tabBarStyle: {
+          backgroundColor: '#fff',
+          borderTopColor: '#E3F2FD',
+          borderTopWidth: 1,
+          height: 60,
+          paddingBottom: 8,
+        },
+        tabBarLabelStyle: { fontSize: 11, fontWeight: '600' },
+        headerStyle: { backgroundColor: '#1565C0' },
+        headerTintColor: '#fff',
+        headerTitleStyle: { fontWeight: 'bold', fontSize: 18 },
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          title: 'Consulta',
+          headerTitle: '🔍 Consulta de Notas',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="search-circle-outline" size={size + 2} color={color} />
+          ),
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="registro-estudiante"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: 'Reg. Estud.',
+          headerTitle: '👤 Registro Estudiante',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="person-add-outline" size={size + 2} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="registro-nota"
+        options={{
+          title: 'Reg. Nota',
+          headerTitle: '📝 Registro de Nota',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="create-outline" size={size + 2} color={color} />
+          ),
         }}
       />
     </Tabs>
